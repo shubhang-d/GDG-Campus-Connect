@@ -1,45 +1,111 @@
-# Miscellaneous
-*.class
+# =======================================================
+# General
+# =======================================================
+# Logs
+logs
 *.log
-*.pyc
-*.swp
-.DS_Store
-.atom/
-.build/
-.buildlog/
-.history
-.svn/
-.swiftpm/
-migrate_working_dir/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
 
-# IntelliJ related
-*.iml
-*.ipr
-*.iws
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# =======================================================
+# Flutter
+# =_=====================================================
+# IDE specific files
 .idea/
+.vscode/
+*.iml
+*.hprof
+.DS_Store
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
-
-# Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
+# Flutter build artifacts
+build/
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
+
+# Packages
+.packages
 .pub-cache/
-.pub/
-/build/
 
-# Symbolication related
-app.*.symbols
+# Flutter-specific sensitive files
+ios/Flutter/App.framework
+ios/Flutter/engine.version
+ios/Flutter/podfile.version
+ios/Pods/
+ios/.symlinks/
+ios/Runner/GeneratedPluginRegistrant.h
+ios/Runner/GeneratedPluginRegistrant.m
+android/key.properties
+android/local.properties
+android/app/src/main/kotlin/com/example/gdg_campus_connect/MainActivity.kt # Example - consider your package name
+*.keystore
+*.jks
 
-# Obfuscation related
-app.*.map.json
+# Generated Firebase configuration files
+lib/firebase_options.dart
 
-# Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
+# =======================================================
+# Firebase / Google Cloud
+# =======================================================
+# General Firebase files
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+
+# Firebase emulator
+*.jar
+*.rules
+*.db
+firestore.rules
+database.rules
+
+# =======================================================
+# Firebase Functions (TypeScript)
+# =======================================================
+# This section assumes your functions are in a 'functions' directory
+# at the root of your project.
+
+# Compiled JavaScript files
+functions/lib/
+functions/dist/
+
+# Dependency directory
+functions/node_modules/
+
+# Log files
+functions/npm-debug.log
+functions/yarn-error.log
+functions/yarn-debug.log
+
+# Environment variables
+# IMPORTANT: Never commit your local environment variables
+functions/.env
+functions/.env.local
+functions/.env.development.local
+functions/.env.test.local
+functions/.env.production.local
+
+# =======================================================
+# Operating System Files
+# =======================================================
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+
+# Windows
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
