@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "200747227245",
+    "project_id": "gdg-campus-conne",
+    "storage_bucket": "gdg-campus-conne.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:200747227245:android:05d66f6563665375db8764",
+        "android_client_info": {
+          "package_name": "com.example.gdg_campus_connect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "200747227245-r8fv1cl5cdj05qd1vf9h432o3tstipe0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gdg_campus_connect",
+            "certificate_hash": "d995bf2751e6f90a4ba00794d73a02b590d5d15b"
+          }
+        },
+        {
+          "client_id": "200747227245-pimsd2oj4iium36k811kimaiqdb8buf4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyNp6KYc-_M2eqIoB8CC9Ma2SuxA8io3Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "200747227245-pimsd2oj4iium36k811kimaiqdb8buf4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "200747227245-nbr54ia85cbp9kt315o51p2hli2l4d3t.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gdgCampusConnect"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
