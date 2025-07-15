@@ -20,15 +20,12 @@ class MessageBubble extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Column(
-        // Align sender name based on who sent the message
         crossAxisAlignment:
             isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
-          // Show sender's name if it's not me
           if (!isMe)
             Padding(
               padding: const EdgeInsets.only(left: 16, bottom: 2),
-              // Use a FutureBuilder to fetch user details on-the-fly
               child: FutureBuilder<UserModel?>(
                 future: Get.find<UserService>().getUserById(senderId),
                 builder: (context, snapshot) {
@@ -39,7 +36,7 @@ class MessageBubble extends StatelessWidget {
                       style: const TextStyle(fontSize: 12, color: Colors.grey),
                     );
                   }
-                  return const SizedBox.shrink(); // Return empty space while loading
+                  return const SizedBox.shrink();
                 },
               ),
             ),

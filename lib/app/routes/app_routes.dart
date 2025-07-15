@@ -1,6 +1,5 @@
 part of 'app_pages.dart';
 
-// Defines the names of the routes for type-safe navigation.
 abstract class Routes {
   Routes._();
   static const SPLASH = _Paths.SPLASH;

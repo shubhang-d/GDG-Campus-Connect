@@ -12,7 +12,7 @@ class CreateProjectController extends GetxController {
   final skillController = TextEditingController();
 
   final requiredSkills = <String>[].obs;
-  final status = 'Recruiting'.obs; // Default status
+  final status = 'Recruiting'.obs;
   final isSaving = false.obs;
 
   void addSkill() {
@@ -38,7 +38,7 @@ class CreateProjectController extends GetxController {
           'requiredSkills': requiredSkills.toList(),
           'status': status.value,
         });
-        Get.back(); // Go back to projects list
+        Get.back();
         Get.snackbar("Success", "Project created successfully!");
       } catch (e) {
         Get.snackbar("Error", "Failed to create project.");

@@ -7,20 +7,16 @@ import 'package:gdg_campus_connect/app/routes/app_pages.dart';
 
 class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  // --- THIS IS THE CORRECTED LINE ---
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
-  // ---------------------------------
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   final Rx<User?> _firebaseUser = Rx<User?>(null);
   User? get user => _firebaseUser.value;
 
-  // onReady is called after the widget is rendered on screen
   @override
   void onReady() {
     super.onReady();
     _firebaseUser.bindStream(_auth.authStateChanges());
-    // `ever` is a GetX worker that listens to a reactive variable
     ever(_firebaseUser, _setInitialScreen);
   }
 
@@ -29,10 +25,7 @@ class AuthController extends GetxController {
       if (user == null) {
         Get.offAllNamed(Routes.LOGIN);
       } else {
-        // --- THIS IS THE ONLY CHANGE NEEDED IN THIS FILE ---
-        // Redirect to the new main navigation screen instead of just the home screen.
         Get.offAllNamed(Routes.NAVIGATION);
-        // ---------------------------------------------------
       }
     });
   }
@@ -46,7 +39,7 @@ class AuthController extends GetxController {
 
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
       if (googleUser == null) {
-        Get.back(); // Close dialog if user cancels
+        Get.back();
         return;
       }
 
@@ -59,7 +52,7 @@ class AuthController extends GetxController {
       final UserCredential userCredential = await _auth.signInWithCredential(credential);
       final User? newUser = userCredential.user;
 
-      Get.back(); // Close loading dialog
+      Get.back();
 
       if (newUser != null) {
         final docRef = _firestore.collection('users').doc(newUser.uid);

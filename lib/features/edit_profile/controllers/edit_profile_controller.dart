@@ -9,16 +9,13 @@ class EditProfileController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final AuthController _authController = Get.find();
 
-  // For loading states
   final isLoading = true.obs;
   final isSaving = false.obs;
 
-  // Text editing controllers
   late TextEditingController bioController;
   late TextEditingController skillController;
   late TextEditingController interestController;
 
-  // Reactive lists for skills and interests
   final skills = <String>[].obs;
   final interests = <String>[].obs;
 
@@ -84,7 +81,6 @@ class EditProfileController extends GetxController {
       });
 
       Get.snackbar("Success", "Your profile has been updated!");
-      // If the user came from the login flow, this takes them to the main app.
       Get.offAllNamed(Routes.HOME);
 
     } catch (e) {

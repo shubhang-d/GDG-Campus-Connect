@@ -9,7 +9,6 @@ class ChatService extends GetxService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final AuthController _authController = Get.find();
 
-  // Get a stream of all chat channels for the current user
   Stream<List<ChatChannelModel>> getChatChannelsStream() {
     return _firestore
         .collection('chatChannels')
@@ -21,7 +20,6 @@ class ChatService extends GetxService {
             .toList());
   }
 
-  // Get a stream of messages for a specific chat channel
   Stream<List<MessageModel>> getMessagesStream(String channelId) {
     return _firestore
         .collection('chatChannels')
@@ -34,7 +32,6 @@ class ChatService extends GetxService {
             .toList());
   }
 
-  // Send a message in a specific chat channel
   Future<void> sendMessage(String channelId, String text) async {
     if (text.trim().isEmpty) return;
 
@@ -45,7 +42,6 @@ class ChatService extends GetxService {
       'timestamp': Timestamp.now(),
     };
 
-    // Directly add the new message. This is a simple, non-transactional write.
     await _firestore
         .collection('chatChannels')
         .doc(channelId)
@@ -58,28 +54,25 @@ class ChatService extends GetxService {
     required String lastMessage,
   }) async {
     final channelRef = _firestore.collection('chatChannels').doc(channelId);
-    await channelRef.set({ // Use set with merge:true to create if not exists
+    await channelRef.set({ 
       'lastMessage': lastMessage,
       'lastMessageTimestamp': Timestamp.now(),
-      'isGroupChat': true, // Mark it as a group chat
+      'isGroupChat': true, 
       'groupName': 'Community Chat',
     }, SetOptions(merge: true));
   }
 
-  // Create or get a 1-on-1 chat channel and navigate to it
   Future<void> createOrGetChatChannel(String peerId) async {
     final currentUserId = _authController.user!.uid;
 
-    // Create a predictable channel ID for 1-on-1 chats
     List<String> userIds = [currentUserId, peerId];
-    userIds.sort(); // Sort to ensure the ID is always the same
+    userIds.sort(); 
     String channelId = userIds.join('_');
 
     final channelRef = _firestore.collection('chatChannels').doc(channelId);
     final docSnapshot = await channelRef.get();
 
     if (!docSnapshot.exists) {
-      // Create the channel if it doesn't exist
       await channelRef.set({
         'isGroupChat': false,
         'members': userIds,
@@ -88,7 +81,6 @@ class ChatService extends GetxService {
       });
     }
 
-    // Navigate to the chat screen
     Get.toNamed(Routes.CHAT_SCREEN, arguments: channelId);
   }
 }

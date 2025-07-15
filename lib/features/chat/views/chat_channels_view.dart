@@ -28,14 +28,12 @@ class ChatChannelsView extends StatelessWidget {
           itemBuilder: (context, index) {
             final channel = controller.channels[index];
             final lastMessageTime = channel.lastMessageTimestamp.toDate();
-            // This is a simplified way to get the other user's name
-            // A better way would be to fetch user profiles and cache them
             final otherUserId = channel.members
                 .firstWhere((id) => id != authController.user!.uid, orElse: () => 'User');
 
             return ListTile(
               leading: const CircleAvatar(child: Icon(Icons.person)),
-              title: Text("Chat with ${otherUserId.substring(0,6)}..."), // Placeholder name
+              title: Text("Chat with ${otherUserId.substring(0,6)}..."),
               subtitle: Text(
                 channel.lastMessage,
                 maxLines: 1,

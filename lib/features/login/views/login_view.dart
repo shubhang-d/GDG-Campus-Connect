@@ -7,7 +7,6 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Find the AuthController instance that we "put" in main.dart
     final AuthController authController = Get.find();
 
     return Scaffold(
@@ -18,7 +17,6 @@ class LoginView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              // Replace with your app's logo
               const FlutterLogo(size: 120),
               const SizedBox(height: 48),
               const Text(
@@ -34,7 +32,6 @@ class LoginView extends StatelessWidget {
               ),
               const SizedBox(height: 48),
               
-              // Sign in Button
               ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
@@ -44,11 +41,9 @@ class LoginView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                // This is the only logic needed in the view
                 onPressed: () {
                   authController.signInWithGoogle();
                 },
-                // Make sure to add the Google logo to your assets folder
                 icon: Image.asset('assets/images/google_logo.png', height: 22.0),
                 label: const Text(
                   'Sign in with Google',

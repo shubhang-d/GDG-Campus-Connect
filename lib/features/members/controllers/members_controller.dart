@@ -8,11 +8,9 @@ class MembersController extends GetxController {
   final _allUsers = <UserModel>[].obs;
   final isLoading = true.obs;
   
-  // Reactive variables for filtering
   final searchTerm = ''.obs;
   final selectedSkillFilter = ''.obs;
   
-  // A set to store all unique skills available for filtering
   final availableSkills = <String>{}.obs;
 
   @override
@@ -39,7 +37,6 @@ class MembersController extends GetxController {
     availableSkills.assignAll(allSkills.toList()..sort());
   }
 
-  // A computed property that returns the filtered list based on state
   List<UserModel> get filteredUsers {
     List<UserModel> users = _allUsers;
 

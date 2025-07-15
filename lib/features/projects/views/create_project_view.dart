@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gdg_campus_connect/features/projects/controllers/create_project_controller.dart';
-import 'package:gdg_campus_connect/features/edit_profile/views/edit_profile_view.dart'; // Re-using extension
+import 'package:gdg_campus_connect/features/edit_profile/views/edit_profile_view.dart';
 
 class CreateProjectView extends StatelessWidget {
   const CreateProjectView({super.key});
@@ -59,7 +59,6 @@ class CreateProjectView extends StatelessWidget {
     );
   }
 
-  // Copied from EditProfileView, can be extracted to a shared widget
   Widget _buildEditableChipList(
     String title,
     RxList<String> items,

@@ -67,7 +67,7 @@ class AiGeneratorView extends StatelessWidget {
               title: Text(idea.projectName, style: Get.textTheme.titleLarge),
               children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 16), // Adjusted padding
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -76,12 +76,11 @@ class AiGeneratorView extends StatelessWidget {
                       _buildDetail("Key Features", ""),
                       ...idea.keyFeatures.map((f) => Text("• $f")).toList(),
                       const SizedBox(height: 20),
-                      // --- START OF THE NEW CODE ---
                       SizedBox(
                         width: double.infinity,
                         child: Obx(() => ElevatedButton.icon(
                               onPressed: controller.isCreatingProject.value
-                                  ? null // Disable button while creating
+                                  ? null
                                   : () => controller.createProjectFromIdea(idea),
                               icon: controller.isCreatingProject.value
                                   ? const SizedBox(
@@ -97,7 +96,6 @@ class AiGeneratorView extends StatelessWidget {
                               ),
                             )),
                       ),
-                      // --- END OF THE NEW CODE ---
                     ],
                   ),
                 )

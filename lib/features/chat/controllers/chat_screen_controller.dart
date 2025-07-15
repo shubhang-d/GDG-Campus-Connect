@@ -20,10 +20,8 @@ class ChatScreenController extends GetxController {
     final messageText = textController.text.trim();
     if (messageText.isEmpty) return;
 
-    // 1. Send the message to the subcollection
     _chatService.sendMessage(channelId, messageText);
     
-    // 2. Update the parent channel's metadata (for the preview)
     _chatService.updateChannelMetadata(
       channelId: channelId,
       lastMessage: messageText,

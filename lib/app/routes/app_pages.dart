@@ -9,7 +9,6 @@ import 'package:gdg_campus_connect/features/projects/views/project_detail_view.d
 import 'package:gdg_campus_connect/features/projects/views/projects_view.dart';
 import 'package:get/get.dart';
 import 'package:gdg_campus_connect/features/login/views/login_view.dart';
-// IMPORT THE NEW HOME VIEW
 import 'package:gdg_campus_connect/features/home/views/home_view.dart';
 import 'package:gdg_campus_connect/features/splash/splash_view.dart';
 import 'package:gdg_campus_connect/features/edit_profile/views/edit_profile_view.dart';
@@ -63,14 +62,12 @@ GetPage(
       name: _Paths.CHAT_SCREEN,
       page: () => const ChatScreenView(),
     ),
-    // UPDATE THE HOME ROUTE
     GetPage(
       name: _Paths.HOME,
-      page: () => const HomeView(), // Use the new HomeView
+      page: () => const HomeView(),
     ),
     GetPage(
       name: _Paths.EDIT_PROFILE,
-      // THIS IS THE UPDATED LINE
       page: () => const EditProfileView(),
     ),
   ];

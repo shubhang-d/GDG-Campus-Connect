@@ -32,9 +32,8 @@ class ProjectDetailController extends GetxController {
     isRequesting.value = true;
     try {
       await _projectService.requestToJoinProject(projectId);
-      // Optimistically update the UI
       project.value?.pendingMembers.add(userId);
-      project.refresh(); // Tell GetX to rebuild widgets
+      project.refresh();
       Get.snackbar("Success", "Your request to join has been sent.");
     } catch (e) {
       Get.snackbar("Error", "Failed to send request.");

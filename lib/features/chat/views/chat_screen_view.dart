@@ -28,13 +28,11 @@ class ChatScreenView extends StatelessWidget {
                 itemCount: controller.messages.length,
                 itemBuilder: (context, index) {
                   final message = controller.messages[index];
-                  // --- THIS IS THE CORRECTED WIDGET CALL ---
                   return MessageBubble(
                     text: message.text,
-                    senderId: message.senderId, // We were missing this parameter
+                    senderId: message.senderId,
                     isMe: message.senderId == authController.user!.uid,
                   );
-                  // ------------------------------------------
                 },
               );
             }),

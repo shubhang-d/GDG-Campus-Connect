@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gdg_campus_connect/app/controllers/auth_controller.dart';
-import 'package:gdg_campus_connect/features/chat/widgets/message_bubble.dart'; // We can reuse the same bubble!
+import 'package:gdg_campus_connect/features/chat/widgets/message_bubble.dart';
 import 'package:gdg_campus_connect/features/global_chat/controllers/global_chat_controller.dart';
 
 class GlobalChatView extends StatelessWidget {
@@ -32,10 +32,9 @@ class GlobalChatView extends StatelessWidget {
                 itemCount: controller.messages.length,
                 itemBuilder: (context, index) {
                   final message = controller.messages[index];
-                  // We can re-use the MessageBubble widget perfectly.
                   return MessageBubble(
                     text: message.text,
-                    senderId: message.senderId, // Pass the senderId
+                    senderId: message.senderId,
                     isMe: message.senderId == authController.user!.uid,
                   );
                 },

@@ -6,7 +6,7 @@ class ProjectModel {
   final String description;
   final String problemStatement;
   final List<String> teamMembers;
-  final List<String> pendingMembers; // Added for join requests
+  final List<String> pendingMembers;
   final List<String> requiredSkills;
   final String status;
   final String? repoLink;

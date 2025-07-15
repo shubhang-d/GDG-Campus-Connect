@@ -4,10 +4,8 @@ import 'package:get/get.dart';
 class HomeController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  // Use RxBool for simple true/false reactive states
   final isLoading = true.obs;
 
-  // Use RxList for lists that will be updated and reflected in the UI
   final RxList<Map<String, dynamic>> announcements = <Map<String, dynamic>>[].obs;
   final RxList<Map<String, dynamic>> featuredProjects = <Map<String, dynamic>>[].obs;
   final RxList<Map<String, dynamic>> upcomingEvents = <Map<String, dynamic>>[].obs;
@@ -21,7 +19,6 @@ class HomeController extends GetxController {
   Future<void> fetchAllData() async {
     try {
       isLoading.value = true;
-      // Run all fetches concurrently for faster loading
       await Future.wait([
         fetchAnnouncements(),
         fetchFeaturedProjects(),
@@ -66,4 +63,3 @@ class HomeController extends GetxController {
     upcomingEvents.value = snapshot.docs.map((doc) => doc.data()).toList();
   }
 }
-

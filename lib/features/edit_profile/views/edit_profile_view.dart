@@ -41,7 +41,7 @@ class EditProfileView extends StatelessWidget {
                     controller.addInterest,
                     controller.removeInterest,
                   ),
-                  const SizedBox(height: 80), // Space for the save button
+                  const SizedBox(height: 80),
                 ],
               ),
             ),
@@ -82,7 +82,6 @@ class EditProfileView extends StatelessWidget {
       children: [
         Text(title, style: Get.textTheme.titleLarge),
         const SizedBox(height: 8),
-        // Display the chips
         Obx(() => Wrap(
               spacing: 8.0,
               runSpacing: 4.0,
@@ -92,7 +91,6 @@ class EditProfileView extends StatelessWidget {
                   )).toList(),
             )),
         const SizedBox(height: 8),
-        // Input field to add new items
         Row(
           children: [
             Expanded(
@@ -136,7 +134,6 @@ class EditProfileView extends StatelessWidget {
   }
 }
 
-// A simple extension to get the singular form of a word
 extension StringExtension on String {
   String singularize() {
     if (endsWith('s')) {

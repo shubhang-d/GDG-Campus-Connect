@@ -18,14 +18,13 @@ class AiGeneratorController extends GetxController {
   Future<void> createProjectFromIdea(ProjectIdeaModel idea) async {
     isCreatingProject.value = true;
     try {
-      // Map the AI idea data to the format our ProjectService expects
       final projectData = {
         'projectName': idea.projectName,
-        'description': idea.proposedSolution, // Map solution to description
+        'description': idea.proposedSolution,
         'problemStatement': idea.problemStatement,
-        'requiredSkills': idea.keyFeatures, // Map features to skills
-        'status': 'Recruiting', // Default status
-        'repoLink': '', // Default to empty
+        'requiredSkills': idea.keyFeatures,
+        'status': 'Recruiting',
+        'repoLink': '',
       };
 
       await _projectService.createProject(projectData);
@@ -36,7 +35,6 @@ class AiGeneratorController extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
       );
 
-      // Automatically switch to the Projects tab (index 1)
       Get.find<MainNavigationController>().changePage(1);
 
     } catch (e) {
@@ -61,31 +59,20 @@ class AiGeneratorController extends GetxController {
       final HttpsCallable callable = _functions.httpsCallable('generateProjectIdeas');
       final result = await callable.call<Map<String, dynamic>>({'keywords': keywords});
 
-      // --- START OF THE FIX ---
-
-      // 1. Safely access the 'ideas' list from the returned data.
       final dynamic rawIdeasData = result.data['ideas'];
 
-      // 2. Perform a type-safe check to ensure it's a list.
       if (rawIdeasData is List) {
-        // 3. Map over the list and perform a SAFE conversion, not a blind cast.
-        // Map.from() will safely convert each item into the format we need.
         ideas.value = rawIdeasData
             .map((data) => ProjectIdeaModel.fromJson(Map<String, dynamic>.from(data)))
             .toList();
       } else {
-        // If the data for 'ideas' isn't a list, something is wrong with the response.
         throw Exception("Received data is not in the expected list format.");
       }
       
-      // --- END OF THE FIX ---
-
     } on FirebaseFunctionsException catch (e) {
-      // This catches specific errors from the Cloud Function itself (e.g., permissions)
       Get.snackbar("Function Error", e.message ?? "An unknown error occurred.");
     } catch (e) {
-      // This catches all other errors, including our type parsing errors.
-      print("Failed to parse ideas: $e"); // Add a print statement for better debugging!
+      print("Failed to parse ideas: $e");
       Get.snackbar("Error", "Failed to process the generated ideas.");
     } finally {
       isLoading.value = false;

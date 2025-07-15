@@ -33,7 +33,6 @@ class ProjectDetailView extends StatelessWidget {
               _buildSectionTitle("Required Skills"),
               Wrap(spacing: 8, children: project.requiredSkills.map((s) => Chip(label: Text(s))).toList()),
               const SizedBox(height: 24),
-              // We will improve this later by showing user names and photos
               _buildSection("Team Members", project.teamMembers.join('\n')),
               const SizedBox(height: 32),
               Center(child: _buildJoinButton(controller)),

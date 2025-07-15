@@ -11,10 +11,8 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Put the HomeController into memory
     final HomeController controller = Get.put(HomeController());
     final ChatService chatService = Get.put(ChatService());
-    // Find the already existing AuthController
     final AuthController authController = Get.find();
 
     return Scaffold(
@@ -30,7 +28,6 @@ class HomeView extends StatelessWidget {
           ),
         ],
       ),
-      // Obx wraps the widget and rebuilds it automatically when reactive variables change
       body: Obx(() {
         if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
@@ -42,17 +39,14 @@ class HomeView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // --- ANNOUNCEMENTS SECTION ---
                 _buildSectionTitle('Announcements'),
                 _buildAnnouncementsSection(controller),
                 const SizedBox(height: 24),
 
-                // --- FEATURED PROJECTS SECTION ---
                 _buildSectionTitle('Featured Projects'),
                 _buildFeaturedProjectsSection(controller),
                 const SizedBox(height: 24),
 
-                // --- UPCOMING EVENTS SECTION ---
                 _buildSectionTitle('Upcoming Events'),
                 _buildUpcomingEventsSection(controller),
               ],
@@ -60,45 +54,6 @@ class HomeView extends StatelessWidget {
           ),
         );
       }),
-      // floatingActionButton: FloatingActionButton(
-      //   tooltip: 'Start a Test Chat',
-      //   child: const Icon(Icons.message),
-      //   onPressed: () {
-      //     // --- THIS IS THE CORRECTED LOGIC ---
-      //     // Use Get.find() here to get the ChatService instance
-      //     // This ensures it's available right when we need it.
-      //     final ChatService chatService = Get.find();
-      //     final AuthController authController = Get.find();
-
-      //     // IMPORTANT: Replace with a real user's UID from your Firestore 'users' collection.
-      //     // You CANNOT chat with yourself.
-      //     String otherUserId = "XB7APiMQRObtTpxVJz9WxpUHFZx1";
-      //     final String? currentUserId = authController.user?.uid;
-
-      //     if (currentUserId == null) {
-      //       Get.snackbar("Error", "You are not logged in.");
-      //       return;
-      //     }
-
-      //     if (otherUserId == "PASTE_ANOTHER_USER_UID_HERE" || otherUserId.isEmpty) {
-      //       Get.snackbar(
-      //         "Test Chat Setup",
-      //         "Please open home_view.dart and replace the placeholder with a real User ID from another test account.",
-      //         snackPosition: SnackPosition.BOTTOM,
-      //         duration: const Duration(seconds: 6),
-      //       );
-      //       return;
-      //     }
-          
-      //     if (otherUserId == currentUserId) {
-      //       Get.snackbar("Error", "You cannot start a chat with yourself.");
-      //       return;
-      //     }
-
-      //     // Now, this call will work perfectly.
-      //     chatService.createOrGetChatChannel(otherUserId);
-      //   },
-      // ),
     );
   }
 
@@ -145,7 +100,6 @@ class HomeView extends StatelessWidget {
         itemCount: controller.featuredProjects.length,
         itemBuilder: (context, index) {
           final project = controller.featuredProjects[index];
-          // Safely cast the skills list
           final skills = (project['requiredSkills'] as List<dynamic>?)
                   ?.map((e) => e.toString())
                   .toList() ??

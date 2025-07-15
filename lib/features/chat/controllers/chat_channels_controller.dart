@@ -9,7 +9,6 @@ class ChatChannelsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // Bind the stream from the service to our reactive list
     channels.bindStream(_chatService.getChatChannelsStream());
   }
 }

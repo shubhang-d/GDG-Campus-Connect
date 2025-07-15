@@ -9,7 +9,6 @@ class ProjectsController extends GetxController {
   final isLoading = true.obs;
   final searchTerm = ''.obs;
 
-  // This computed property will hold the final list to be displayed
   List<ProjectModel> get filteredProjects {
     if (searchTerm.value.isEmpty) {
       return _projects;
@@ -25,7 +24,6 @@ class ProjectsController extends GetxController {
   void onInit() {
     super.onInit();
     _projects.bindStream(_projectService.getProjectsStream());
-    // Use a debouncer to avoid excessive reads on search
     debounce(searchTerm, (_) => update(), time: const Duration(milliseconds: 400));
     _projects.listen((_) => isLoading.value = false);
   }
